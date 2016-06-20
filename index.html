@@ -1,0 +1,70 @@
+<!Doctype html>
+
+<html>
+<head>
+<title>Google Map Example </title>
+<style>
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      #map {
+        height: 100%;
+      }
+      #floating-panel {
+        position: absolute;
+        top: 10px;
+        left: 25%;
+        z-index: 5;
+        background-color: #fff;
+        padding: 5px;
+        border: 1px solid #999;
+        text-align: center;
+        font-family: 'Roboto','sans-serif';
+        line-height: 30px;
+        padding-left: 10px;
+      }
+    </style>
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places"></script>
+      <script>
+      var map;
+      var geocoder;
+
+      function initGoogleMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 8,
+    center: {lat: -34.397, lng: 150.644}
+  });
+   geocoder = new google.maps.Geocoder();
+
+  document.getElementById('submit').addEventListener('click', function() {
+    searchAddress(geocoder, map);
+  });
+}
+
+function searchAddress(geocoder, resultsMap) {
+  var address = document.getElementById('address').value;
+  geocoder.geocode({'address': address}, function(results, status) {
+    if (status === google.maps.GeocoderStatus.OK) {
+      resultsMap.setCenter(results[0].geometry.location);
+      var marker = new google.maps.Marker({
+        map: resultsMap,
+        position: results[0].geometry.location
+      });
+    } else {
+      alert('Address search was not successful for the following reason: ' + status);
+    }
+  });
+}
+      </script>
+</head>
+<body onload= "initGoogleMap()">
+  <div id="floating-panel">
+        Enter city or address: <br>
+        <input type="textbox" id="address"><br>
+       <input id="submit" type="button" value="Search">
+  </div>
+  <div id="map"></div>
+</body>
+</html>
