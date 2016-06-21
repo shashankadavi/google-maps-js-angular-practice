@@ -1,70 +1,21 @@
-<!Doctype html>
-
 <html>
 <head>
-<title>Google Map Example </title>
-<style>
-      html, body {
-        height: 100%;
-        margin: 0;
-        padding: 0;
-      }
-      #map {
-        height: 100%;
-      }
-      #floating-panel {
-        position: absolute;
-        top: 10px;
-        left: 25%;
-        z-index: 5;
-        background-color: #fff;
-        padding: 5px;
-        border: 1px solid #999;
-        text-align: center;
-        font-family: 'Roboto','sans-serif';
-        line-height: 30px;
-        padding-left: 10px;
-      }
-    </style>
-<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places"></script>
-      <script>
-      var map;
-      var geocoder;
-
-      function initGoogleMap() {
-        map = new google.maps.Map(document.getElementById('map'), {
-    zoom: 8,
-    center: {lat: -34.397, lng: 150.644}
-  });
-   geocoder = new google.maps.Geocoder();
-
-  document.getElementById('submit').addEventListener('click', function() {
-    searchAddress(geocoder, map);
-  });
-}
-
-function searchAddress(geocoder, resultsMap) {
-  var address = document.getElementById('address').value;
-  geocoder.geocode({'address': address}, function(results, status) {
-    if (status === google.maps.GeocoderStatus.OK) {
-      resultsMap.setCenter(results[0].geometry.location);
-      var marker = new google.maps.Marker({
-        map: resultsMap,
-        position: results[0].geometry.location
-      });
-    } else {
-      alert('Address search was not successful for the following reason: ' + status);
-    }
-  });
-}
-      </script>
+<title>OOP Google Map </title>
 </head>
-<body onload= "initGoogleMap()">
-  <div id="floating-panel">
+
+<!-- <link rel="stylesheet" type="text/css" href="index.css"> -->
+
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places"></script>
+<script type = "text/javascript" src = "js/oopMap.js"></script>
+ <script> var oneMap </script>
+
+<script></script>
+<body onload= "oneMap= new Map(); oneMap.initMap();">
+  <div>
         Enter city or address: <br>
         <input type="textbox" id="address"><br>
-       <input id="submit" type="button" value="Search">
+       <input id="submit" type="button" onclick="oneMap.searchAddress()" value="Search">
   </div>
-  <div id="map"></div>
+  <div id="map" style="width:700px;height:600px;"></div>
 </body>
 </html>
