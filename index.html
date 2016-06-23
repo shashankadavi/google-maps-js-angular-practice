@@ -1,21 +1,28 @@
 <html>
+
 <head>
-<title>OOP Google Map </title>
+    <title>OOP Google Map </title>
 </head>
 
 <!-- <link rel="stylesheet" type="text/css" href="index.css"> -->
 
 <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places"></script>
-<script type = "text/javascript" src = "js/oopMap.js"></script>
- <script> var oneMap </script>
+<script type="text/javascript" src="js/oopMap.js"></script>
+<script>
+    var oneMap
+</script>
 
 <script></script>
-<body onload= "oneMap= new Map(); oneMap.initMap();">
-  <div>
-        Enter city or address: <br>
-        <input type="textbox" id="address"><br>
-       <input id="submit" type="button" onclick="oneMap.searchAddress()" value="Search">
-  </div>
-  <div id="map" style="width:700px;height:600px;"></div>
+
+<body onload="oneMap= new Map(); oneMap.initMap();">
+    <div>
+        Enter city or address:
+        <br>
+        <input type="textbox" id="address">
+        <br>
+        <input id="submit" type="button" onclick="oneMap.searchAddress()" value="Search">
+    </div>
+    <div id="map" style="width:700px;height:600px;"></div>
 </body>
+
 </html>
