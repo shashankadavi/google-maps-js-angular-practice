@@ -1,0 +1,26 @@
+<html ng-app="angMaps" ng-controller= "googleMapControl" ng-init="initMap()">
+
+<head>
+    <title>Angular Google Map with directive</title>
+</head>
+
+<!-- <link rel="stylesheet" type="text/css" href="index.css"> -->
+
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+<script type="text/javascript" src="../angular-version-directive/googleMap.js"></script>
+</script>
+
+<script></script>
+
+<body>
+
+    <div ng-controller="googleMapControl">
+      Search:
+        <display-map></display-map>
+    </div>
+    <div id="map" style="width:700px;height:600px;"></div>
+</body>
+
+
+</html>
