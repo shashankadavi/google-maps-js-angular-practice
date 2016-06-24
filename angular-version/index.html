@@ -1,0 +1,29 @@
+<html data-ng-app="angMaps" data-ng-controller= "googleMapControl" data-ng-init="initMap()">
+
+<head>
+    <title>OOP Google Map </title>
+</head>
+
+<!-- <link rel="stylesheet" type="text/css" href="index.css"> -->
+
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+<script type="text/javascript" src="googleMap.js"></script>
+</script>
+
+<script></script>
+
+<body>
+
+    <div data-ng-controller="googleMapControl">
+        Enter city or address:
+        <br>
+        <input type="textbox"  data-ng-model ="address">
+        <br>
+        <input id="submit" type="button" ng-click="searchAddress()" value="Search">
+    </div>
+    <div id="map" style="width:700px;height:600px;"></div>
+</body>
+
+
+</html>
