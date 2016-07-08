@@ -10,7 +10,6 @@ var Map = function() {
       this.address = "address";
 
       this.map = null;
-      // this.geocoder = null;
 };
 
 Map.prototype.initMap = function(){
@@ -18,22 +17,20 @@ Map.prototype.initMap = function(){
           zoom: this.zoom,
             center: this.center
       });
-      // console.log("hello");
 };
 
 Map.prototype.searchAddress = function(){
-       var geocoder = new google.maps.Geocoder();
-       var map = this.map;
+        var geocoder = new google.maps.Geocoder();
+
 
        var address = document.getElementById(this.address).value;
+       geocoder.geocode({  'address': address }, this.handleResults );
+};
 
-       geocoder.geocode({  'address': address }, function(results, status) {
-
-           map.setCenter(results[0].geometry.location);
-               var marker = new google.maps.Marker({
-               map: map,
-               position: results[0].geometry.location
-           });
-
-       });
+Map.prototype.handleResults = function(results){
+  this.map.setCenter(results[0].geometry.location);
+      var marker = new google.maps.Marker({
+      map: map,
+      position: results[0].geometry.location
+  });
 }
