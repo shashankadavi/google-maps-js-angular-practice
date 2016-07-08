@@ -1,4 +1,14 @@
 var angMaps = angular.module('angMaps',[]);
+var page ='<br/>\
+<input type="textbox" id="address" ng-model ="address" >\
+<br/>\
+<input id="submit" type="button" ng-click="searchAddress()" value="Search">\
+<br>\
+<input id="submit" type="button" ng-click="saveAddress()" value= "Save">\
+<br>\
+<input id="submit" type="button" ng-click="searchAddress()" value="Search">\
+<br>\
+<input id="submit" type="button" ng-click="loadAddress()" value="Load">';
 
 
 angMaps.controller('googleMapControl', function ($scope){
@@ -22,6 +32,35 @@ angMaps.controller('googleMapControl', function ($scope){
           });
         };
 
+
+
+        $scope.searchAddress = function(){
+              var geocoder = new google.maps.Geocoder();
+              var map = $scope.map;
+
+              var address = $scope.address;
+
+              geocoder.geocode({  'address': address }, $scope.handleResults );
+
+        }
+        $scope.handleResults= function(results){
+          $scope.map.setCenter(results[0].geometry.location);
+              var marker = new google.maps.Marker({
+              map: map,
+              position: results[0].geometry.location
+          });
+        }
+
+
+        $scope.searchThisAddress = function(loadThisAddress){
+              var geocoder = new google.maps.Geocoder();
+              var map = $scope.map;
+
+              var address = loadThisAddress;
+
+              geocoder.geocode({  'address': address }, $scope.handleResults );
+        };
+
         $scope.saveAddress= function(){
             // $scope.locations.push({
             //      text: $scope.address
@@ -30,41 +69,6 @@ angMaps.controller('googleMapControl', function ($scope){
             // localStorage.setItem('locations', JSON.stringify($scope.locations));
         };
 
-        $scope.searchAddress = function(){
-              var geocoder = new google.maps.Geocoder();
-              var map = $scope.map;
-
-              var address = $scope.address;
-
-              geocoder.geocode({  'address': address }, function(results, status) {
-
-                  map.setCenter(results[0].geometry.location);
-                      var marker = new google.maps.Marker({
-                      map: map,
-                      position: results[0].geometry.location
-                  });
-
-              });
-
-        };
-
-        $scope.searchThisAddress = function(loadThisAddress){
-              var geocoder = new google.maps.Geocoder();
-              var map = $scope.map;
-
-              var address = loadThisAddress;
-
-              geocoder.geocode({  'address': address }, function(results, status) {
-
-                  map.setCenter(results[0].geometry.location);
-                      var marker = new google.maps.Marker({
-                      map: map,
-                      position: results[0].geometry.location
-                  });
-
-              });
-
-        };
 
         $scope.loadAddress = function(){
 
@@ -73,14 +77,12 @@ angMaps.controller('googleMapControl', function ($scope){
         }
 
 
-
-
 });
 
 angMaps.directive('displayMap', function(){
 
   return{
 
-              templateUrl: "../angular-local-storage/template/googleMapDir.html"
+                template: page
   };
 });

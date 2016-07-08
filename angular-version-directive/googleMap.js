@@ -1,5 +1,10 @@
 var angMaps = angular.module('angMaps',[]);
 
+var page ='<br/>\
+<input type="textbox" id="address" ng-model ="address" >\
+<br/>\
+<input id="submit" type="button" ng-click="searchAddress()" value="Search">';
+
 
 angMaps.controller('googleMapControl', function ($scope){
         $scope.mapElement = "map";
@@ -23,16 +28,15 @@ angMaps.controller('googleMapControl', function ($scope){
 
               var address = $scope.address;
 
-              geocoder.geocode({  'address': address }, function(results, status) {
+              geocoder.geocode({  'address': address }, $scope.handleResults );
 
-                  map.setCenter(results[0].geometry.location);
-                      var marker = new google.maps.Marker({
-                      map: map,
-                      position: results[0].geometry.location
-                  });
-
-              });
-
+        }
+        $scope.handleResults= function(results){
+          $scope.map.setCenter(results[0].geometry.location);
+              var marker = new google.maps.Marker({
+              map: map,
+              position: results[0].geometry.location
+          });
         }
 
 
@@ -43,7 +47,7 @@ angMaps.controller('googleMapControl', function ($scope){
 angMaps.directive('displayMap', function(){
 
   return{
-              
-              templateUrl: "../angular-version-directive/template/googleMapDir.html"
+
+            template: page
   };
 });
