@@ -54,7 +54,7 @@ angMaps.controller('googleMapControl', function ($scope){
 
         $scope.searchThisAddress = function(loadThisAddress){
               var geocoder = new google.maps.Geocoder();
-              var map = $scope.map;
+              // var map = $scope.map;
 
               var address = loadThisAddress;
 

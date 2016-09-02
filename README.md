@@ -1,13 +1,10 @@
-# js-training
-This is JS Training Kata
+
 Steps:
 -Right click on index.html and run it in your browser
 - For each step,the correct file needed for the browser, index. html should be moved from the folder for that step to the root. Eg. to run angualrized OOP with local storage, navigate to angular-local-storage and copy the index.html to the root
 -This is due to googlemap api being used without a key.
 
 
-
-Kata Steps:
 
 1.	Install NodeJS
 2.	Install BowerJS and Http-Server  (via NPM)
